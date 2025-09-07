@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Nedtælling</title>
+<style>
+    h1, p {
+        text-align: center;
+    }
+</style>
+</head>
+
+<body>
+<h1>Nedtælling til fødselsdag:</h1>
+<p id="dhms"></p>
+<p id="hms"></p>
+<p id="ms"></p>
+<p id="s"></p>
+
+<script>
+const birth_month = 9
+const birth_day = 24
+let year;
+
+const f = new Date()
+if (f.getMonth() > birth_month - 1 || (f.getMonth() == birth_month - 1 && f.getDate() > birth_day)) {
+year = f.getFullYear() + 1;} else if (f.getMonth() < birth_month - 1 || (f.getMonth() == birth_month - 1 && f.getDate() < birth_day)) {
+year = f.getFullYear();}
+
+const aim = new Date(year, birth_month - 1, birth_day)
+
+const dhms = document.getElementById("dhms");
+const hms = document.getElementById("hms");
+const ms = document.getElementById("ms");
+const s = document.getElementById("s");
+
+
+function update() {
+const d = new Date();
+dhms.innerHTML = `${Math.floor(((((aim-d)/1000)/60)/60)/24)} dage, ${Math.floor((((aim-d)/1000)/60)/60) - Math.floor(((((aim-d)/1000)/60)/60)/24) * 24} timer, ${Math.floor(((aim-d)/1000)/60) - (Math.floor((((aim-d)/1000)/60)/60) - Math.floor(((((aim-d)/1000)/60)/60)/24) * 24) * 60 - Math.floor(((((aim-d)/1000)/60)/60)/24) * 60 * 24} minutter og ${Math.round((aim - d)/1000) - Math.floor(((((aim-d)/1000)/60)/60)/24) * 60 * 60 * 24 - (Math.floor((((aim-d)/1000)/60)/60) - Math.floor(((((aim-d)/1000)/60)/60)/24) * 24) * 60 * 60 - (Math.floor(((aim-d)/1000)/60) - (Math.floor((((aim-d)/1000)/60)/60) - Math.floor(((((aim-d)/1000)/60)/60)/24) * 24) * 60 - Math.floor(((((aim-d)/1000)/60)/60)/24) * 60 * 24) * 60} sekunder.`
+hms.innerHTML = `${Math.floor((((aim-d)/1000)/60)/60)} timer, ${Math.floor(Math.floor(((aim-d)/1000)/60)) - Math.floor((((aim-d)/1000)/60)/60) * 60} minutter og ${Math.round((aim - d)/1000) - (Math.floor(Math.floor(((aim-d)/1000)/60)) - Math.floor((((aim-d)/1000)/60)/60) * 60) * 60 - Math.floor((((aim-d)/1000)/60)/60)*3600} sekunder.`;
+ms.innerHTML = `${Math.floor(((aim-d)/1000)/60)} minuttter og ${Math.round((aim - d)/1000) - Math.floor(((aim-d)/1000)/60) * 60} sekunder.`;
+s.innerHTML = `${Math.round((aim - d)/1000)} sekunder.`;
+}
+
+setInterval(update, 1000);
+
+</script>
+</body>
+
+
+</html>
