@@ -22,7 +22,6 @@
 <p id="hms"></p>
 <p id="ms"></p>
 <p id="s"></p>
-
 <script>
 const birth_month = 9
 const birth_day = 24
@@ -43,12 +42,15 @@ const s = document.getElementById("s");
 
 function update() {
 const d = new Date();
-dhms.innerHTML = `${Math.floor(((((aim-d)/1000)/60)/60)/24)} dage, ${Math.floor((((aim-d)/1000)/60)/60) - Math.floor(((((aim-d)/1000)/60)/60)/24) * 24} timer, ${Math.floor(((aim-d)/1000)/60) - (Math.floor((((aim-d)/1000)/60)/60) - Math.floor(((((aim-d)/1000)/60)/60)/24) * 24) * 60 - Math.floor(((((aim-d)/1000)/60)/60)/24) * 60 * 24} minutter og ${Math.round((aim - d)/1000) - Math.floor(((((aim-d)/1000)/60)/60)/24) * 60 * 60 * 24 - (Math.floor((((aim-d)/1000)/60)/60) - Math.floor(((((aim-d)/1000)/60)/60)/24) * 24) * 60 * 60 - (Math.floor(((aim-d)/1000)/60) - (Math.floor((((aim-d)/1000)/60)/60) - Math.floor(((((aim-d)/1000)/60)/60)/24) * 24) * 60 - Math.floor(((((aim-d)/1000)/60)/60)/24) * 60 * 24) * 60} sekunder.`
-hms.innerHTML = `${Math.floor((((aim-d)/1000)/60)/60)} timer, ${Math.floor(Math.floor(((aim-d)/1000)/60)) - Math.floor((((aim-d)/1000)/60)/60) * 60} minutter og ${Math.round((aim - d)/1000) - (Math.floor(Math.floor(((aim-d)/1000)/60)) - Math.floor((((aim-d)/1000)/60)/60) * 60) * 60 - Math.floor((((aim-d)/1000)/60)/60)*3600} sekunder.`;
-ms.innerHTML = `${Math.floor(((aim-d)/1000)/60)} minuttter og ${Math.round((aim - d)/1000) - Math.floor(((aim-d)/1000)/60) * 60} sekunder.`;
-s.innerHTML = `${Math.round((aim - d)/1000)} sekunder.`;
+const secs = Math.round((aim - d)/1000);
+const urmin = ((aim-d)/1000)/60
+const urhour = (urmin)/60
+dhms.innerHTML = `${Math.floor((urhour)/24)} dage, ${Math.floor(urhour) - Math.floor((urhour)/24) * 24} timer, ${Math.floor(urmin) - (Math.floor(urhour) - Math.floor((urhour)/24) * 24) * 60 - Math.floor((urhour)/24) * 60 * 24} minutter og ${secs - Math.floor((urhour)/24) * 60 * 60 * 24 - (Math.floor(urhour) - Math.floor((urhour)/24) * 24) * 60 * 60 - (Math.floor(urmin) - (Math.floor(urhour) - Math.floor((urhour)/24) * 24) * 60 - Math.floor((urhour)/24) * 60 * 24) * 60} sekunder.`;
+hms.innerHTML = `${Math.floor(urhour)} timer, ${Math.floor(Math.floor(urmin)) - Math.floor(urhour) * 60} minutter og ${secs - (Math.floor(Math.floor(urmin)) - Math.floor(urhour) * 60) * 60 - Math.floor(urhour)*3600} sekunder.`;
+ms.innerHTML = `${Math.floor(urmin)} minuttter og ${secs - Math.floor(urmin) * 60} sekunder.`;
+s.innerHTML = `${secs} sekunder.`;
 }
-
+update();
 setInterval(update, 1000);
 
 </script>
