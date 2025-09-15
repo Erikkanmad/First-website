@@ -1,5 +1,23 @@
-const birth_month = 9
-const birth_day = 24
+
+
+function sdate() {
+const inp = document.getElementById("dater")
+const m = inp.value;
+const [mon, da] = m.split("-");
+localStorage.setItem("birth_month", mon)
+localStorage.setItem("birth_day", da)
+inp.value = "";
+location.reload();}
+
+let birth_month, birth_day;
+const chmn = localStorage.getItem("birth_month")
+if (chmn) {
+     birth_month = chmn;
+} else {birth_month = 9}
+const chda = localStorage.getItem("birth_day")
+if (chda) {
+    birth_day = chda
+} else {birth_day = 24}
 let year;
 const t = document.getElementById("titular")
 
