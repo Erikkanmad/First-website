@@ -8,3 +8,31 @@
         font-size: 4vw;
         margin: 2;
     }
+    input {
+    width: 80%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border 0.3s;
+}
+input:focus {
+    border-color: #4CAF50; 
+}
+button {
+    width: 80%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #45a049; 
+}
